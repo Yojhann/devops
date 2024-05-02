@@ -5,32 +5,34 @@ def call(Map param){
         agent any
 
         tools{
-            nodejs 'NodeJS'
+            nodejs 'NodeJS18'
         }
 
         // triggers {
         //     pollSCM('* * * * *') // Programa la verificación del repositorio cada minuto
         // }
 
-        // environment{
-        //    PROJECT = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
-        // }
+        environment{
+            PROJECT = "${env.GIT_URL_1}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+        }
 
         stages{
-            stage('Clone App') {
+            stage('Proceso Construccion') {
                 steps {
                     script {
                         def cloneapp = new org.devops.lb_buildartefacto()
                         cloneapp.clone(scmUrl:params.scmUrl)
+                        def buildapp = new org.devops.lb_buildartefacto()
+                        buildapp.install
                     }
                 }
             }
 
-            stage('Construccion App') {
+            stage('Analisis Sonarqube ') {
                 steps {
                     script {
-                        def buildapp = new org.devops.lb_buildartefacto()
-                        buildapp.install()
+                        def test = new org.devops.lb_analisissonarqube()
+                        analisisSonar.analisisSonar("$PROJECT")
                     }
                 }
             }
