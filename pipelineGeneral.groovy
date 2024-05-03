@@ -1,4 +1,4 @@
-def call(Map param){
+def call(){
 
     pipeline{
 
@@ -20,10 +20,10 @@ def call(Map param){
             stage('Proceso Construccion') {
                 steps {
                     script {
-                        def cloneapp = new org.devops.lb_buildartefacto()
-                        cloneapp.clone(scmUrl:params.scmUrl)
                         def buildapp = new org.devops.lb_buildartefacto()
                         buildapp.install
+                        def cloneapp = new org.devops.lb_buildartefacto()
+                        cloneapp.clone()
                     }
                 }
             }
