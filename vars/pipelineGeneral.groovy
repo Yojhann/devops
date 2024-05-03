@@ -29,7 +29,7 @@ def call(){
                 steps {
                     script{
                         def deployImg = new org.devops.lb_deploydocker()
-                        deployImg.despliegueContenedor ("$(projectName)")
+                        deployImg.despliegueContenedor ("${projectName}")
                         }
                     }
                 }
