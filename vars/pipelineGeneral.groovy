@@ -11,7 +11,7 @@ def call(){
             stage('Fase 2: Construcción de imagen en Docker Desktop') {
                 steps {
                     script {
-                        def buildimage new org.devops.lb_buildimagen()
+                        def buildimage = new org.devops.lb_buildimagen()
                         buildimage.buildImageDocker("${projectName}")
                     }
                 }
@@ -19,7 +19,7 @@ def call(){
             stage('Fase 2: publicar imagen a docker hub') {
                 steps {
                     script {
-                        def publicImagenew org.devops.lb_publicardockerhub()
+                        def publicImage = new org.devops.lb_publicardockerhub()
                         publicImage.publicarImage("${projectName}")
                     }
                 }
