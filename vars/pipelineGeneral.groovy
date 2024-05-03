@@ -28,7 +28,6 @@ def call(){
             stage('Fase 2: Desplegar imagen en docker') {
                 steps {
                     script{
-                        echo "Project Git Name: ${projectGitName}"
                         def deployImg = new org.devops.lb_deploydocker()
                         deployImg.despliegueContenedor ("${projectName}")
                         }
