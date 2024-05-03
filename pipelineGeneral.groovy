@@ -13,7 +13,7 @@ def call(){
         // }
 
         environment{
-            PROJECT = "${env.GIT_URL_1}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+            projectName = "${env.GIT_URL_1}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
         }
 
         stages{
@@ -32,7 +32,9 @@ def call(){
                 steps {
                     script {
                         def test = new org.devops.lb_analisissonarqube()
-                        analisisSonar.analisisSonar("$PROJECT")
+                        test.runTest()
+                        def analisysSonarqube = new org.devops.lb_analisissonarqube()
+                        analisysSonarqube.analisys("${projectName}")
                     }
                 }
             }
