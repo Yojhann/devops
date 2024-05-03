@@ -8,8 +8,8 @@ def analisys (projectGitName) {
         if (scannerHome) {
             withSonarQubeEnv('sonar-scanner'){
                 sh "${scannerHome}/bin/sonar-scanner \
-                    -Dsonar.projectKey=${gitName} \
-                    -Dsonar.projectName=${gitName} \
+                    -Dsonar.projectKey=${projectGitName} \
+                    -Dsonar.projectName=${projectGitName} \
                     -Dsonar.sources=${env.source} \
                     -Dsonar.tests=src/__test__\
                     -Dsonar.exclusions='**/*.test.js' \
