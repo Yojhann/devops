@@ -21,7 +21,7 @@ def call(){
                 steps {
                     script {
                         def buildapp = new org.devops.lb_buildartefacto()
-                        buildapp.install
+                        buildapp.install()
                         def cloneapp = new org.devops.lb_buildartefacto()
                         cloneapp.clone()
                     }
