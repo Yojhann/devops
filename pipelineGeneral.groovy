@@ -33,6 +33,15 @@ def call(){
                         }
                     }
                 }
+            
+            stage('Fase 2: Analisis con OWASP') {
+                steps {
+                    script{
+                        def owasp = new org.devops.lb_owasp()
+                        owasp.AnalisisOwasp ("${projectName}")
+                        }
+                    }
+                }
 
         }
     }
